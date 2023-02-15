@@ -1,1 +1,1 @@
-console.log('package.json')
+console.log('package.json', [1, 2, 3])
