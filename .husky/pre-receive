@@ -1,0 +1,27 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+process_ref() {
+    oldrev=$(git rev-parse $1)
+    newrev=$(git rev-parse $2)
+    refname="$3"
+
+    set_change_type
+    set_rev_types
+    set_describe_tags
+
+    case "$refname","$rev_type" in
+      refs/tags/*,tag)
+        # annotated tag
+        refname_type="annotated tag"
+        function="atag"
+        short_refname=${refname##refs/tags/}
+        # change recipients
+        if [ -n "$announcerecipients" ]; then
+          recipients="$announcerecipients"
+        fi
+      ;;
+    esac 
+}
+
+while read REF; do process_ref $REF; done
