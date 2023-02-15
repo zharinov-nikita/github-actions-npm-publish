@@ -1,5 +1,5 @@
 {
-  "name": "github-actions-npm-publish",
+  "name": "@zharinov-nikita/github-actions-npm-publish",
   "version": "4.0.13",
   "description": "",
   "main": "index.js",
